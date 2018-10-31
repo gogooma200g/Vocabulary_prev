@@ -1,0 +1,75 @@
+{
+  "RESULT_CODE": 1,
+  "RESULT_MSG": null,
+  "SCODE":"1",
+  "TITLE":"Pop Quiz",
+  "CONTENTS":"Pop Quiz",
+  "RATE":"1",
+  "CURR_QUSEQ":"1",
+  "STDYDATE":"2018.05.03",
+  "VOCA_LIST": [
+    {
+      "NUM": 1,
+      "WORD": "the plot thickens",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 2,
+      "WORD": "the plot thickens2",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 3,
+      "WORD": "the plot thickens3",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 1,
+      "WORD": "the plot thickens",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 2,
+      "WORD": "the plot thickens2",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 3,
+      "WORD": "the plot thickens3",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 1,
+      "WORD": "the plot thickens",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 2,
+      "WORD": "the plot thickens2",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    },
+    {
+      "NUM": 3,
+      "WORD": "the plot thickens3",
+      "MEAN": "사정이 더 복잡해 지고 있다",
+      "MEMO_YN": "Y",
+      "CONTS": "the plot thickens 의 설명"
+    }
+  ]
+}
