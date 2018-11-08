@@ -1,22 +1,24 @@
 package com.axioms.voca.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 
 import com.axioms.voca.R;
+import com.axioms.voca.activity.MainActivity;
+import com.axioms.voca.activity.VocaListActivity;
+import com.axioms.voca.activity.VocaManageActivity;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.vo.VoVocaList;
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
  * Created by kiel1 on 2018-10-17.
  */
 
-public class MainVocaFragment extends Fragment implements View.OnClickListener {
+public class MainVocaFragment extends Fragment implements View.OnClickListener, MainActivity.OnBackPressedListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private ArrayList<VoVocaList.VoVoca> vocaArrayList = new ArrayList<>();
@@ -53,6 +55,12 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_voca, container, false);
         LogUtil.i("onCreateView");
@@ -60,9 +68,24 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener {
         ll_vocaCard = rootView.findViewById(R.id.ll_vocaCard);
 
         slidingLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
+        slidingLayout.setMinFlingVelocity(500);
         //slidingLayout.setAnchorPoint((float) 0.9);
 
-        slidingLayout.addPanelSlideListener(panelSlideListener);
+        slidingLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                float scale = (float) (1 - ((slideOffset * 0.1)));
+                //float scale2 = (float) ((slideOffset * 0.2) + 0.8);
+                LogUtil.i("onPanelSlide, offset " + slideOffset + " / " + scale);
+                ll_vocaCard.setScaleX(scale);
+                ll_vocaCard.setScaleY(scale);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                LogUtil.i("onPanelStateChanged " + newState);
+            }
+        });
 
         VocaPagerAdapter vocaPagerAdapter = new VocaPagerAdapter(getActivity().getSupportFragmentManager());
 
@@ -73,7 +96,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener {
 
         Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_main_search);
-        mToolbar.inflateMenu(R.menu.comm);
+        mToolbar.inflateMenu(R.menu.menu_main);
 
         setHasOptionsMenu(true);
 
@@ -83,34 +106,73 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public boolean onBack() {
+        if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            return true;
+        }else
+            return false;
+    }
+
+
+    boolean isEnaHandler = true;
+
+    @SuppressLint("HandlerLeak")
+    Handler panelClosedHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            LogUtil.i("msg :: " + msg);
+
+            if(PANELLAYOUT_OPEN_VOCA_CHANGE == msg.what) {
+                startActivity(new Intent(getActivity(), VocaManageActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
+            }else if(PANELLAYOUT_OPEN_VOCA_LIST == msg.what) {
+                startActivity(new Intent(getActivity(), VocaListActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
+            }
+            isEnaHandler = true;
+        }
+    };
+
+    private final int PANELLAYOUT_OPEN_VOCA_CHANGE = 1000;
+    private final int PANELLAYOUT_OPEN_VOCA_LIST = 1001;
+
+    @Override
     public void onClick(View view) {
+
+        if(!isEnaHandler) return;
 
         switch (view.getId()){
             case R.id.btn_voca_change :
+
+                if(SlidingUpPanelLayout.PanelState.EXPANDED ==  slidingLayout.getPanelState()) {
+                    changePanelAndHandler(PANELLAYOUT_OPEN_VOCA_CHANGE);
+                }
+                else{
+                    startActivity(new Intent(getActivity(), VocaManageActivity.class));
+                    getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
+                }
                 break;
 
             case R.id.btn_voca_list :
+
+                if(SlidingUpPanelLayout.PanelState.EXPANDED ==  slidingLayout.getPanelState()) {
+                    changePanelAndHandler(PANELLAYOUT_OPEN_VOCA_LIST);
+                }
+                else{
+                    startActivity(new Intent(getActivity(), VocaListActivity.class));
+                    getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
+                }
                 break;
         }
     }
 
-    SlidingUpPanelLayout.PanelSlideListener panelSlideListener = new SlidingUpPanelLayout.PanelSlideListener(){
-
-        @Override
-        public void onPanelSlide(View panel, float slideOffset) {
-            float scale = (float) (1 - ((slideOffset * 0.1)));
-            //float scale2 = (float) ((slideOffset * 0.2) + 0.8);
-            LogUtil.i("onPanelSlide, offset " + slideOffset + " / " + scale);
-            ll_vocaCard.setScaleX(scale);
-            ll_vocaCard.setScaleY(scale);
-        }
-
-        @Override
-        public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-            LogUtil.i("onPanelStateChanged " + newState);
-        }
-    };
-
+    private void changePanelAndHandler(int state) {
+        isEnaHandler = false;
+        slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        panelClosedHandler.sendEmptyMessageDelayed(state, 200);
+    }
 
     public void setAdapterData(ArrayList<VoVocaList.VoVoca> arrayListData) {
         this.vocaArrayList = arrayListData;

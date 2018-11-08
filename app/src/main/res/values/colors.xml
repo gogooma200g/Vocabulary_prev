@@ -13,10 +13,14 @@
     <color name="dusk_blue">#1d6e88</color>
     <color name="white_30">#4Dffffff</color>
     <color name="black_30">#4D000000</color>
+    <color name="black_20">#2D000000</color>
     <color name="medium_blue">#2966d5</color>
     <color name="white_47">#78dbdbdb</color>
     <color name="black_50">#80000000</color>
     <color name="black_95">#959595</color>  <!--hint-->
     <color name="orangish">#f8835f</color>
+    <color name="white_f6">#f6f6f6</color>
+    <color name="white_eb">#ebebeb</color>
+    <color name="cobalt">#1e4787</color>
 
 </resources>

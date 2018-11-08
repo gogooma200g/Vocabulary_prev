@@ -15,7 +15,9 @@ import com.axioms.voca.fragment.MainDictFragment;
 import com.axioms.voca.fragment.MainSrchFragment;
 import com.axioms.voca.fragment.MainVocaFragment;
 import com.axioms.voca.util.CommUtil;
+import com.axioms.voca.util.ToastUtil;
 import com.axioms.voca.vo.VoVocaList;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,16 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity {
 
     //@BindView(R.id.container) Toolbar mToolbar;
+
+    public interface OnBackPressedListener {
+        boolean onBack();
+    }
+
+    private OnBackPressedListener onBackPressedListener;
+
+    public void setOnBackPressedListener(OnBackPressedListener listener) {
+        this.onBackPressedListener = listener;
+    }
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -67,9 +79,33 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    private long pressedTime = 0;
 
+    @Override
+    public void onBackPressed() {
 
-//    @Override
+        if(onBackPressedListener.onBack()) {
+            //onBackPressedListener.onBack();
+        }else{
+            if(pressedTime == 0) {
+                ToastUtil.show(this, R.string.cmm_onbackpress);
+                pressedTime = System.currentTimeMillis();
+            }
+            else{
+                int seconds = (int) (System.currentTimeMillis() - pressedTime);
+                if ( seconds > 2000 ) {
+                    ToastUtil.show(this, R.string.cmm_onbackpress);
+                    pressedTime = 0 ;
+                }
+                else {
+                    super.onBackPressed();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                }
+            }
+        }
+    }
+
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.menu_main, menu);

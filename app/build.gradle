@@ -38,4 +38,7 @@ dependencies {
     compile 'com.sothree.slidinguppanel:library:3.4.0'
     compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.10'
     //compile 'me.grantland:autofittextview:0.2.+'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile "com.daimajia.swipelayout:library:1.2.0@aar"
 }

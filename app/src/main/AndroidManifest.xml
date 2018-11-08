@@ -20,6 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.VocaManageActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|navigation|touchscreen|uiMode"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.VocaListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|navigation|touchscreen|uiMode"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

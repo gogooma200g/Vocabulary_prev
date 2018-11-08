@@ -6,6 +6,8 @@
     <string name="action_dictionary">Dictionary</string>
     <string name="action_search">Search</string>
 
+    <string name="cmm_onbackpress">백버튼을 한번 더 누르면 앱을 종료합니다.</string>
+
     <string name="error_app">알수없는 오류가 발생했습니다. 앱을 재실행 합니다.\n오류 정보는 본사로 전송됩니다.</string>
 
     <string name="str_memorize">암기</string>
@@ -19,5 +21,12 @@
     <string name="str_hint_kor">한글를 입력해 주세요.</string>
     <string name="str_go_setting">설정으로 이동</string>
 
+    <string name="str_more">더보기</string>
+
     <string name="str_srch">검색</string>
+    <string name="str_confirm">확인</string>
+    <string name="btn_add_words">단어장 추가</string>
+
+    <string name="str_list_delete">삭제 하시겠습니까?</string>
+    <string name="cmm_yes">예</string>
 </resources>
