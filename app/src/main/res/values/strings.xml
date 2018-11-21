@@ -7,6 +7,7 @@
     <string name="action_search">Search</string>
 
     <string name="cmm_onbackpress">백버튼을 한번 더 누르면 앱을 종료합니다.</string>
+    <string name="cmm_yes">예</string>
 
     <string name="error_app">알수없는 오류가 발생했습니다. 앱을 재실행 합니다.\n오류 정보는 본사로 전송됩니다.</string>
 
@@ -25,8 +26,27 @@
 
     <string name="str_srch">검색</string>
     <string name="str_confirm">확인</string>
-    <string name="btn_add_words">단어장 추가</string>
+    <string name="str_btn_add_words">단어장 추가</string>
 
     <string name="str_list_delete">삭제 하시겠습니까?</string>
-    <string name="cmm_yes">예</string>
+
+    <!-- Dialog -->
+    <string name="dialog_yes">네</string>
+    <string name="dialog_no">아니오</string>
+    <string name="dialog_describe">현재 오프라인 상태입니다.\n네트워크 상태를 확인하세요.</string>
+    <string name="dialog_setting">설정</string>
+    <string name="dialog_end">종료</string>
+    <string name="dialog_network_connected">네트워크가 연결 됐습니다.</string>
+    <string name="dialog_permission_title">권한요청 안내</string>
+    <string name="dialog_permission_conts">요청하신 기능을 실행하려면 아래의 접근 권한 허용이 필요합니다.
+    \n\n[저장공간/녹음]\n\n-다운로드 저장 및 파일 접근\n-녹음기능 접근</string>
+
+    <!-- Toast -->
+    <string name="toast_delete_voca">단어가 삭제 되었습니다</string>
+    <string name="toast_play">단어 플레이</string>
+    <string name="toast_memorize">암기</string>
+
+    <!-- item ID -->
+    <item name="IDX" type="id" />
+
 </resources>

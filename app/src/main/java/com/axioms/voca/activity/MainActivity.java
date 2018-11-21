@@ -16,6 +16,7 @@ import com.axioms.voca.fragment.MainSrchFragment;
 import com.axioms.voca.fragment.MainVocaFragment;
 import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.ToastUtil;
+import com.axioms.voca.vo.VoVoca;
 import com.axioms.voca.vo.VoVocaList;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -197,7 +198,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private ArrayList<VoVocaList.VoVoca> getTestData() {
+    private ArrayList<VoVoca> getTestData() {
         String msg = null;
         try {
             msg = CommUtil.getData(this, "vocabulary.json");

@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/dimen_15sp"
             android:textColor="@android:color/white"
-            android:text="@string/btn_add_words"
+            android:text="@string/str_btn_add_words"
             android:layout_marginLeft="@dimen/dimen_10dp"/>
 
     </LinearLayout>

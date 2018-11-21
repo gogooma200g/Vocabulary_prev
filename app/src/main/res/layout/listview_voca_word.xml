@@ -57,6 +57,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_english"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Let's push through this week harder as we always have been doing."
@@ -64,6 +65,7 @@
                     android:textSize="@dimen/dimen_15sp" />
 
                 <TextView
+                    android:id="@+id/tv_mean"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="그것은 당연하다"
@@ -80,12 +82,14 @@
                 android:orientation="vertical">
 
                 <ImageButton
+                    android:id="@+id/btn_play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_speaker" />
 
                 <Button
+                    android:id="@+id/btn_memorize"
                     android:layout_width="@dimen/dimen_40dp"
                     android:layout_height="@dimen/dimen_16dp"
                     android:layout_marginTop="@dimen/dimen_10dp"
@@ -97,8 +101,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </com.daimajia.swipe.SwipeLayout>
 

@@ -31,26 +31,33 @@
         android:layout_height="1dp"
         android:background="@color/white_47" />
 
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager"
+        android:layout_weight="1" />
 
-        <LinearLayout
-            android:id="@+id/ll_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
 
-            <include
-                android:id="@+id/ll_add_voca"
-                layout="@layout/listview_voca_word" />
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
 
-            <include layout="@layout/listview_voca_word" />
+            <!--<include-->
+                <!--android:id="@+id/ll_add_voca"-->
+                <!--layout="@layout/listview_voca_word" />-->
 
-        </LinearLayout>
+            <!--<include layout="@layout/listview_voca_word" />-->
 
-    </ScrollView>
+        <!--</LinearLayout>-->
+
+    <!--</ScrollView>-->
 
     <LinearLayout
         android:id="@+id/btn_advertise"

@@ -20,6 +20,7 @@ import com.axioms.voca.activity.MainActivity;
 import com.axioms.voca.activity.VocaListActivity;
 import com.axioms.voca.activity.VocaManageActivity;
 import com.axioms.voca.util.LogUtil;
+import com.axioms.voca.vo.VoVoca;
 import com.axioms.voca.vo.VoVocaList;
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 public class MainVocaFragment extends Fragment implements View.OnClickListener, MainActivity.OnBackPressedListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private ArrayList<VoVocaList.VoVoca> vocaArrayList = new ArrayList<>();
+    private ArrayList<VoVoca> vocaArrayList = new ArrayList<>();
 
     private SlidingUpPanelLayout slidingLayout;
     private ViewPager mViewPager;
@@ -174,7 +175,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         panelClosedHandler.sendEmptyMessageDelayed(state, 200);
     }
 
-    public void setAdapterData(ArrayList<VoVocaList.VoVoca> arrayListData) {
+    public void setAdapterData(ArrayList<VoVoca> arrayListData) {
         this.vocaArrayList = arrayListData;
     }
 

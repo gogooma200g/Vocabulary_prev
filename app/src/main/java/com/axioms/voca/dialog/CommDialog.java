@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -38,11 +39,11 @@ public class CommDialog extends Dialog implements View.OnClickListener {
 
         setTitle(builder.title);
         setConts(builder.conts);
+        setGravity(builder.contsGravity);
         setButtons(builder.buttonTexts);
         setOnCancelListener(builder.onCancelListener);
 
         findViewById(R.id.btn_close).setOnClickListener(this);
-
     }
 
     public void setTitle(int title) {
@@ -57,6 +58,11 @@ public class CommDialog extends Dialog implements View.OnClickListener {
         TextView tv = (TextView) findViewById(R.id.tv_conts);
         tv.setText(conts);
         tv.setVisibility(View.VISIBLE);
+    }
+
+    public void setGravity(int gravity) {
+        TextView tv = (TextView) findViewById(R.id.tv_conts);
+        tv.setGravity(gravity);
     }
 
     public void setButtons(int... text) {
@@ -81,7 +87,6 @@ public class CommDialog extends Dialog implements View.OnClickListener {
             btn2.setOnClickListener(this);
             btn2.setBackgroundResource(R.drawable.btn_popup_right);
         }
-
     }
 
     @Override
@@ -113,6 +118,7 @@ public class CommDialog extends Dialog implements View.OnClickListener {
         private boolean isCancelable = true;
         private boolean isCancelableTouchOutside = true;
 
+        private int contsGravity = Gravity.CENTER;
         private int title = -1;
         private int conts = -1;
         private int[] buttonTexts;
@@ -142,6 +148,11 @@ public class CommDialog extends Dialog implements View.OnClickListener {
 
         public Builder setConts(int conts) {
             this.conts = conts;
+            return this;
+        }
+
+        public Builder setContsGravity(int gravity) {
+            this.contsGravity = gravity;
             return this;
         }
 
