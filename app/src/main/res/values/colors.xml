@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/gradient_bg_end</color>
-    <color name="colorPrimaryDark">@color/bluish</color>
+    <color name="colorPrimaryDark">@color/black_45</color>
     <color name="colorAccent">@color/faded_orange</color>
 
-    <color name="gradient_bg_end">#2ab9d8</color>
-    <color name="gradient_bg_start">#2a6cd5</color>
+    <!--<color name="gradient_bg_end">#2ab9d8</color>-->
+    <!--<color name="gradient_bg_start">#2a6cd5</color>-->
+
+    <color name="gradient_bg_end">#76c9d8</color>
+    <color name="gradient_bg_start">#2897cc</color>
+    <!--<color name="gradient_bg_end">#fabc69</color>-->
+    <!--<color name="gradient_bg_start">#f7e98a</color>-->
 
     <color name="faded_orange">#f26f6f</color>
     <color name="slate_grey">#565b71</color>
@@ -16,6 +21,7 @@
     <color name="black_20">#2D000000</color>
     <color name="medium_blue">#2966d5</color>
     <color name="white_47">#78dbdbdb</color>
+    <color name="black_45">#454545</color>
     <color name="black_50">#80000000</color>
     <color name="black_95">#959595</color>  <!--hint-->
     <color name="orangish">#f8835f</color>
