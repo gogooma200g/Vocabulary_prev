@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.axioms.voca.activity.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서비스 이용에 불편을 드려 죄송합니다."
+            android:textColor="@color/bluish_two"
+            android:textSize="@dimen/dimen_18.5sp"
+            android:layout_marginTop="@dimen/dimen_18dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서버 점검으로 인해 현재 App을  사용하실 수가 없습니다.\nYYYY-MM-DD 00:00 이후부터  \n사용하실 수 있습니다.  \n관련 문의사항은 고객센터  02-2240-9905로 \n문의 하시면  친절하게 안내 해 드리겠습니다. \n\n\n\n\n"
+            android:textColor="@color/slate_grey"
+            android:gravity="center"
+            android:textSize="@dimen/dimen_14.5sp"
+            android:layout_marginTop="@dimen/dimen_52dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_big"
+            android:textColor="@android:color/white"
+            android:text="종료"
+            android:layout_marginTop="@dimen/dimen_46dp"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

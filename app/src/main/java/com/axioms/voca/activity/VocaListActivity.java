@@ -48,7 +48,8 @@ public class VocaListActivity extends BaseActivity {
 
         for(int i = 0; i < 10; i++) {
             VoVoca voVoca = new VoVoca();
-            voVoca.setCONTS("Let's push through this week harder as we always have been doing.");
+
+
             voVoca.setMEAN("그것은 당연하다 " + i);
             dataList.add(voVoca);
         }

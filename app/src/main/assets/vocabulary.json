@@ -1,75 +1,118 @@
 {
   "RESULT_CODE": 1,
   "RESULT_MSG": null,
-  "SCODE":"1",
-  "TITLE":"Pop Quiz",
-  "CONTENTS":"Pop Quiz",
-  "RATE":"1",
-  "CURR_QUSEQ":"1",
-  "STDYDATE":"2018.05.03",
-  "VOCA_LIST": [
+  "VOCALIST_LIST": [
     {
-      "NUM": 1,
-      "WORD": "the plot thickens",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
+      "ID": "1",
+      "TITLE": "단어장 1",
+      "TOTAL_CNT": 9,
+      "VOCA_LIST": [
+        {
+          "ID": "1",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "2",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다 2",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "3",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens3",
+          "MEAN": "사정이 더 복잡해 지고 있다 3",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "4",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 4",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "5",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "6",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens3",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "7",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "8",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "9",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens3",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        }
+      ]
     },
     {
-      "NUM": 2,
-      "WORD": "the plot thickens2",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 3,
-      "WORD": "the plot thickens3",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 1,
-      "WORD": "the plot thickens",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 2,
-      "WORD": "the plot thickens2",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 3,
-      "WORD": "the plot thickens3",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 1,
-      "WORD": "the plot thickens",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 2,
-      "WORD": "the plot thickens2",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
-    },
-    {
-      "NUM": 3,
-      "WORD": "the plot thickens3",
-      "MEAN": "사정이 더 복잡해 지고 있다",
-      "MEMO_YN": "Y",
-      "CONTS": "the plot thickens 의 설명"
+      "ID": "2",
+      "TITLE": "단어장 2",
+      "TOTAL_CNT": 5,
+      "VOCA_LIST": [
+        {
+          "ID": "1",
+          "LIST_ID": "2",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "2",
+          "LIST_ID": "2",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다 2",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "3",
+          "LIST_ID": "2",
+          "WORD": "the plot thickens3",
+          "MEAN": "사정이 더 복잡해 지고 있다 3",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "4",
+          "LIST_ID": "2",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 4",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "5",
+          "LIST_ID": "2",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        }
+      ]
     }
   ]
 }

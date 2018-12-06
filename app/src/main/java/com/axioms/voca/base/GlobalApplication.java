@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Looper;
 
+import com.androidnetworking.AndroidNetworking;
 import com.axioms.voca.BuildConfig;
 import com.axioms.voca.R;
 import com.axioms.voca.util.LogUtil;
@@ -62,6 +63,8 @@ public class GlobalApplication extends Application {
 
         singleton = this;
         mContext = getApplicationContext();
+
+        AndroidNetworking.initialize(getApplicationContext());
 
         if(!BuildConfig.DEBUG) {
             Thread.setDefaultUncaughtExceptionHandler(mCaughtExceptionHandler);

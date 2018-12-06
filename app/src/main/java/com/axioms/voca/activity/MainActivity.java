@@ -18,6 +18,7 @@ import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.ToastUtil;
 import com.axioms.voca.vo.VoVoca;
 import com.axioms.voca.vo.VoVocaList;
+import com.axioms.voca.vo.VoVocaListArray;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
@@ -202,8 +203,8 @@ public class MainActivity extends BaseActivity {
         String msg = null;
         try {
             msg = CommUtil.getData(this, "vocabulary.json");
-            VoVocaList vocaList = GlobalApplication.getGson().fromJson(msg, VoVocaList.class);
-            return  vocaList.getVOCA_LIST();
+            VoVocaListArray voVocaListArray = GlobalApplication.getGson().fromJson(msg, VoVocaListArray.class);
+            return  voVocaListArray.getVOCALIST_LIST().get(0).getVOCA_LIST();
         } catch (IOException e) {
             e.printStackTrace();
         }

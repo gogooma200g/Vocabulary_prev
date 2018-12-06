@@ -49,7 +49,6 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         VoVoca voData = dataList.get(position);
         VocaListVIewHolder vIewHolder = (VocaListVIewHolder) holder;
 
-        vIewHolder.tv_english.setText(voData.getCONTS());
         vIewHolder.tv_mean.setText(voData.getMEAN());
 
         vIewHolder.btn_delete.setTag(voData);

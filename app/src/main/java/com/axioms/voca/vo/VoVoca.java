@@ -5,18 +5,36 @@ package com.axioms.voca.vo;
  */
 
 public class VoVoca {
-    private int NUM;
+    private String ID;
+    private String VOCA_ID;
+    private String LIST_ID;
     private String WORD;
     private String MEAN;
     private String MEMO_YN;
-    private String CONTS;
+    private String TYPE;
 
-    public int getNUM() {
-        return NUM;
+    public String getID() {
+        return ID;
     }
 
-    public void setNUM(int NUM) {
-        this.NUM = NUM;
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getVOCA_ID() {
+        return VOCA_ID;
+    }
+
+    public void setVOCA_ID(String VOCA_ID) {
+        this.VOCA_ID = VOCA_ID;
+    }
+
+    public String getLIST_ID() {
+        return LIST_ID;
+    }
+
+    public void setLIST_ID(String LIST_ID) {
+        this.LIST_ID = LIST_ID;
     }
 
     public String getWORD() {
@@ -43,11 +61,11 @@ public class VoVoca {
         this.MEMO_YN = MEMO_YN;
     }
 
-    public String getCONTS() {
-        return CONTS;
+    public String getTYPE() {
+        return TYPE;
     }
 
-    public void setCONTS(String CONTS) {
-        this.CONTS = CONTS;
+    public void setTYPE(String TYPE) {
+        this.TYPE = TYPE;
     }
 }
