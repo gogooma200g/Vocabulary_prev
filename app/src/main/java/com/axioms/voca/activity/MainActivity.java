@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import com.axioms.voca.R;
 import com.axioms.voca.base.GlobalApplication;
@@ -24,9 +25,11 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity {
 
-    //@BindView(R.id.container) Toolbar mToolbar;
+    @BindView(R.id.container) Toolbar mToolbar;
 
     public interface OnBackPressedListener {
         boolean onBack();
@@ -210,4 +213,6 @@ public class MainActivity extends BaseActivity {
         }
         return null;
     }
+
+
 }

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,17 @@ import com.axioms.voca.R;
 import com.axioms.voca.activity.MainActivity;
 import com.axioms.voca.activity.VocaListActivity;
 import com.axioms.voca.activity.VocaManageActivity;
+import com.axioms.voca.base.GlobalApplication;
+import com.axioms.voca.sync.DataSyncThread;
+import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.vo.VoVoca;
 import com.axioms.voca.vo.VoVocaList;
+import com.axioms.voca.vo.VoVocaListArray;
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -39,9 +45,9 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     private SlidingUpPanelLayout slidingLayout;
     private ViewPager mViewPager;
     private View ll_vocaCard;
+    private SwipeRefreshLayout swipe_refresh_layout;
 
-    public MainVocaFragment() {
-    }
+    public MainVocaFragment() {}
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -67,6 +73,10 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         LogUtil.i("onCreateView");
 
         ll_vocaCard = rootView.findViewById(R.id.ll_vocaCard);
+        swipe_refresh_layout = rootView.findViewById(R.id.swipe_refresh_layout);
+        swipe_refresh_layout.setColorSchemeResources(R.color.orangish, R.color.yellow,
+                android.R.color.holo_purple, R.color.gradient_bg_start);
+        swipe_refresh_layout.setOnRefreshListener(onRefreshListener);
 
         slidingLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
         slidingLayout.setMinFlingVelocity(500);
@@ -106,6 +116,38 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         return rootView;
     }
 
+    SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            new DataSyncThread(getContext(), dataSyncListener).run();
+        }
+    };
+
+    private ArrayList<VoVoca> getTestData() {
+        String msg = null;
+        try {
+            msg = CommUtil.getData(getContext(), "vocabulary.json");
+            VoVocaListArray voVocaListArray = GlobalApplication.getGson().fromJson(msg, VoVocaListArray.class);
+            return  voVocaListArray.getVOCALIST_LIST().get(0).getVOCA_LIST();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    DataSyncThread.DataSyncListener dataSyncListener = new DataSyncThread.DataSyncListener() {
+        @Override
+        public void success(String response) {
+            getTestData();
+            swipe_refresh_layout.setRefreshing(false);
+        }
+
+        @Override
+        public void fail() {
+            swipe_refresh_layout.setRefreshing(false);
+        }
+    };
+
     @Override
     public boolean onBack() {
         if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
@@ -114,7 +156,6 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         }else
             return false;
     }
-
 
     boolean isEnaHandler = true;
 
@@ -198,10 +239,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         public int getCount() {
             return vocaArrayList.size();
         }
-
-
     }
-
 
 }
 

@@ -20,7 +20,10 @@ import com.google.gson.GsonBuilder;
 public class GlobalApplication extends Application {
 
     private static GlobalApplication singleton;
-    public static volatile Activity currentActivity = null;
+
+    public static GlobalApplication getInstance() {
+        return singleton;
+    }
 
     private Context mContext;
     private Thread.UncaughtExceptionHandler mCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
