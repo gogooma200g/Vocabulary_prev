@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import com.axioms.voca.R;
@@ -16,11 +13,10 @@ import com.axioms.voca.fragment.MainDictFragment;
 import com.axioms.voca.fragment.MainSrchFragment;
 import com.axioms.voca.fragment.MainVocaFragment;
 import com.axioms.voca.util.CommUtil;
+import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.util.ToastUtil;
 import com.axioms.voca.vo.VoVoca;
-import com.axioms.voca.vo.VoVocaList;
 import com.axioms.voca.vo.VoVocaListArray;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -207,7 +203,9 @@ public class MainActivity extends BaseActivity {
         try {
             msg = CommUtil.getData(this, "vocabulary.json");
             VoVocaListArray voVocaListArray = GlobalApplication.getGson().fromJson(msg, VoVocaListArray.class);
-            return  voVocaListArray.getVOCALIST_LIST().get(0).getVOCA_LIST();
+
+            LogUtil.i("size : " + VoVocaListArray.getInstance().getVOCALIST_LIST().size());
+            return  VoVocaListArray.getInstance().getVOCALIST_LIST().get(0).getVOCA_LIST();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,6 +6,8 @@
     <string name="action_dictionary">Dictionary</string>
     <string name="action_search">Search</string>
 
+    <string name="title_word_manage">단어장 관리</string>
+
     <string name="cmm_onbackpress">백버튼을 한번 더 누르면 앱을 종료합니다.</string>
     <string name="cmm_yes">예</string>
 
@@ -40,6 +42,7 @@
     <string name="dialog_permission_title">권한요청 안내</string>
     <string name="dialog_permission_conts">요청하신 기능을 실행하려면 아래의 접근 권한 허용이 필요합니다.
     \n\n[저장공간/녹음]\n\n-다운로드 저장 및 파일 접근\n-녹음기능 접근</string>
+    <string name="dialog_voca_list_delete">단어장을 정말 삭제하시겠습니까?\n단어장을 삭제하면 저장된 단어도\n함께 삭제 됩니다.</string>
 
     <!-- Toast -->
     <string name="toast_delete_voca">단어가 삭제 되었습니다</string>

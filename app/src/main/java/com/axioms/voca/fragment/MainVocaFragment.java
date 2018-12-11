@@ -33,6 +33,9 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by kiel1 on 2018-10-17.
  */
@@ -42,10 +45,11 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private ArrayList<VoVoca> vocaArrayList = new ArrayList<>();
 
-    private SlidingUpPanelLayout slidingLayout;
-    private ViewPager mViewPager;
-    private View ll_vocaCard;
-    private SwipeRefreshLayout swipe_refresh_layout;
+    @BindView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
+    @BindView(R.id.viewPager) ViewPager mViewPager;
+    @BindView(R.id.ll_vocaCard) View ll_vocaCard;
+    @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipe_refresh_layout;
+
 
     public MainVocaFragment() {}
 
@@ -70,6 +74,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_voca, container, false);
+        ButterKnife.bind(this, rootView);
         LogUtil.i("onCreateView");
 
         ll_vocaCard = rootView.findViewById(R.id.ll_vocaCard);
@@ -78,7 +83,6 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
                 android.R.color.holo_purple, R.color.gradient_bg_start);
         swipe_refresh_layout.setOnRefreshListener(onRefreshListener);
 
-        slidingLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
         slidingLayout.setMinFlingVelocity(500);
         //slidingLayout.setAnchorPoint((float) 0.9);
 
@@ -100,7 +104,6 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         VocaPagerAdapter vocaPagerAdapter = new VocaPagerAdapter(getActivity().getSupportFragmentManager());
 
-        mViewPager = (ViewPager) rootView.findViewById(R.id.voca_conts);
         mViewPager.setAdapter(vocaPagerAdapter);
         IndefinitePagerIndicator indicator = rootView.findViewById(R.id.indicator);
         indicator.attachToViewPager(mViewPager);

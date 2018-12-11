@@ -166,7 +166,7 @@
                     android:layout_marginBottom="@dimen/dimen_10dp">
 
                     <android.support.v4.view.ViewPager
-                        android:id="@+id/voca_conts"
+                        android:id="@+id/viewPager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

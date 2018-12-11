@@ -14,6 +14,7 @@ public class VoVocaList extends VoBase {
     private int TOTAL_CNT;
     private String TYPE;
     private ArrayList<VoVoca> VOCA_LIST = new ArrayList<>();
+    private boolean isModifying = false;
 
     public String getID() {
         return ID;
@@ -61,5 +62,13 @@ public class VoVocaList extends VoBase {
 
     public void setVOCA_LIST(ArrayList<VoVoca> VOCA_LIST) {
         this.VOCA_LIST = VOCA_LIST;
+    }
+
+    public boolean isModifying() {
+        return isModifying;
+    }
+
+    public void setModifying(boolean modifying) {
+        isModifying = modifying;
     }
 }

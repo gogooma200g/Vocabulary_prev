@@ -3,20 +3,22 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/sel_bg_voca_manage">
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_itme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginLeft="@dimen/dimen_12.5dp"
-        android:layout_marginRight="@dimen/dimen_10dp"
-        android:gravity="center_vertical">
+        android:paddingTop="@dimen/dimen_7dp"
+        android:paddingBottom="@dimen/dimen_7dp"
+        android:paddingLeft="@dimen/dimen_12.5dp"
+        android:paddingRight="@dimen/dimen_10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/sel_bg_voca_manage">
 
         <EditText
+            android:id="@+id/et_conts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,22 +29,37 @@
             android:paddingTop="@dimen/dimen_10dp"
             android:paddingBottom="@dimen/dimen_10dp"
             android:paddingLeft="@dimen/dimen_13dp"
-            android:paddingRight="@dimen/dimen_13dp" />
+            android:paddingRight="@dimen/dimen_13dp"
+            android:enabled="false"
+            android:focusableInTouchMode="true"
+            android:layout_marginRight="@dimen/dimen_15dp"/>
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btn_write"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             style="@style/Widget.AppCompat.Button"
             android:src="@drawable/ic_word_write"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="@dimen/dimen_15dp"/>
+            android:layout_marginRight="@dimen/dimen_7dp"/>
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            style="@style/Widget.AppCompat.Button"
+            android:src="@drawable/ic_word_check"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="@dimen/dimen_7dp"
+            android:visibility="gone"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btn_delete"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             android:src="@drawable/ic_word_trash"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="@dimen/dimen_7dp"/>
+            android:layout_marginRight="@dimen/dimen_10dp"/>
 
     </LinearLayout>
 

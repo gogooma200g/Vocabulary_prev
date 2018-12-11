@@ -8,7 +8,21 @@ import java.util.ArrayList;
 
 public class VoVocaListArray extends VoBase {
 
+    private volatile static VoVocaListArray instance;
     private ArrayList<VoVocaList> VOCALIST_LIST = new ArrayList<>();
+
+    public VoVocaListArray() {
+        instance = this;
+    }
+
+    public static VoVocaListArray getInstance() {
+        if(instance == null) {
+            synchronized (VoVocaListArray.class) {
+                instance = new VoVocaListArray();
+            }
+        }
+        return instance;
+    }
 
     public ArrayList<VoVocaList> getVOCALIST_LIST() {
         return VOCALIST_LIST;

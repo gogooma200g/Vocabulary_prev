@@ -78,38 +78,220 @@
       "TOTAL_CNT": 5,
       "VOCA_LIST": [
         {
-          "ID": "1",
+          "ID": "20",
           "LIST_ID": "2",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
           "MEMO_YN": "Y"
         },
         {
-          "ID": "2",
+          "ID": "21",
           "LIST_ID": "2",
           "WORD": "the plot thickens2",
           "MEAN": "사정이 더 복잡해 지고 있다 2",
           "MEMO_YN": "Y"
         },
         {
-          "ID": "3",
+          "ID": "22",
           "LIST_ID": "2",
           "WORD": "the plot thickens3",
           "MEAN": "사정이 더 복잡해 지고 있다 3",
           "MEMO_YN": "Y"
         },
         {
-          "ID": "4",
+          "ID": "23",
           "LIST_ID": "2",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 4",
           "MEMO_YN": "Y"
         },
         {
-          "ID": "5",
+          "ID": "24",
           "LIST_ID": "2",
           "WORD": "the plot thickens2",
           "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "3",
+      "TITLE": "단어장 3",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "30",
+          "LIST_ID": "3",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "4",
+      "TITLE": "단어장 4",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "40",
+          "LIST_ID": "4",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "5",
+      "TITLE": "단어장 5",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "50",
+          "LIST_ID": "5",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "6",
+      "TITLE": "단어장 6",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "60",
+          "LIST_ID": "6",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "7",
+      "TITLE": "단어장 7",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "70",
+          "LIST_ID": "7",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "8",
+      "TITLE": "단어장 8",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "80",
+          "LIST_ID": "8",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "9",
+      "TITLE": "단어장 9",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "90",
+          "LIST_ID": "9",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "10",
+      "TITLE": "단어장 10",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "100",
+          "LIST_ID": "10",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "11",
+      "TITLE": "단어장 11",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "110",
+          "LIST_ID": "11",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "12",
+      "TITLE": "단어장 12",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "120",
+          "LIST_ID": "12",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "13",
+      "TITLE": "단어장 13",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "130",
+          "LIST_ID": "13",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "14",
+      "TITLE": "단어장 14",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "140",
+          "LIST_ID": "14",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
+          "MEMO_YN": "Y"
+        }
+      ]
+    },
+    {
+      "ID": "15",
+      "TITLE": "단어장 15",
+      "TOTAL_CNT": 1,
+      "VOCA_LIST": [
+        {
+          "ID": "150",
+          "LIST_ID": "15",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 1",
           "MEMO_YN": "Y"
         }
       ]

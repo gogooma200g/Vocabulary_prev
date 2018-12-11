@@ -6,11 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.axioms.voca.R;
-import com.axioms.voca.adapter.VocaListAdapter;
+import com.axioms.voca.adapter.VocaAdapter;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.vo.VoVoca;
-import com.axioms.voca.vo.VoVocaList;
-import com.daimajia.swipe.SwipeLayout;
 
 import java.util.ArrayList;
 
@@ -26,8 +24,7 @@ public class VocaListActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
-
-    private VocaListAdapter adapter;
+    private VocaAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +52,8 @@ public class VocaListActivity extends BaseActivity {
         }
 
         if(adapter == null) {
-            adapter = new VocaListAdapter(dataList);
+            adapter = new VocaAdapter(dataList);
+            if(recyclerView == null) LogUtil.i("recyclerView null");
             recyclerView.setAdapter(adapter);
         }
     }

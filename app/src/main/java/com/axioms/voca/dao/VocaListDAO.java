@@ -19,6 +19,17 @@ import java.util.ArrayList;
 
 public class VocaListDAO extends BaseDao {
 
+    private static VocaListDAO instance;
+
+    public static VocaListDAO getInstance(Context context) {
+        if(instance == null) {
+            synchronized (VocaListDAO.class) {
+                instance = new VocaListDAO(context);
+            }
+        }
+        return instance;
+    }
+
     public VocaListDAO(Context context) {
         super(context);
         this.tableName = DaoColumns.VocaListColumns.T_VOCABULARY_LIST;
@@ -114,7 +125,7 @@ public class VocaListDAO extends BaseDao {
     /**
      * delete
      */
-    public void delete(VoVoca voca) {
+    public void delete(VoVocaList voca) {
         SQLiteDatabase db = getWritableConnection();
 
         String selection = DaoColumns.VocaListColumns.C_ID + " = ?";
