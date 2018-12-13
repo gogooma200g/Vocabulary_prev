@@ -125,14 +125,30 @@ public class VocaListDAO extends BaseDao {
     /**
      * delete
      */
-    public void delete(VoVocaList voca) {
+    public void delete(VoVocaList info) {
+
         SQLiteDatabase db = getWritableConnection();
+        boolean isInsert = false;
 
-        String selection = DaoColumns.VocaListColumns.C_ID + " = ?";
-        String [] selectionArgs = {voca.getID()};
-        int deletedRows = db.delete(DaoColumns.VocaListColumns.T_VOCABULARY_LIST, selection, selectionArgs);
+        if(isInsert) {
+            String selection = DaoColumns.VocaListColumns.C_ID + " = ?";
+            String [] selectionArgs = {info.getID()};
+            int deletedRows = db.delete(DaoColumns.VocaListColumns.T_VOCABULARY_LIST, selection, selectionArgs);
 
-        LogUtil.i("deleteRows : " + deletedRows);
+            LogUtil.i("deleteRows : " + deletedRows);
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(DaoColumns.VocaListColumns.C_LIST_ID, info.getTITLE());
+        values.put(DaoColumns.VocaListColumns.C_TITLE, info.getTITLE());
+        values.put(DaoColumns.VocaListColumns.C_TYPE, "D");
+
+        long newRowId = db.insert(DaoColumns.VocaListColumns.T_VOCABULARY_LIST, null, values);
+
+        if(newRowId == -1) {
+            ToastUtil.show(mContext, "VocaList insert is Failed");
+        }
     }
 
 

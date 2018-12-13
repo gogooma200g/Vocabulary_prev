@@ -51,5 +51,6 @@
 
     <!-- item ID -->
     <item name="IDX" type="id" />
+    <item name="VIEW" type="id" />
 
 </resources>

@@ -59,59 +59,67 @@
     <!--</ScrollView>-->
 
     <LinearLayout
-        android:id="@+id/btn_advertise"
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_49.5dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@color/slate_grey"
-        android:paddingLeft="@dimen/dimen_20dp"
-        android:paddingRight="@dimen/dimen_20dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/dimen_15sp"
-            android:textColor="@android:color/white"
-            android:text="@string/str_go_setting"
-            android:layout_marginRight="@dimen/dimen_10dp"/>
+        <LinearLayout
+            android:id="@+id/btn_advertise"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_49.5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/slate_grey"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:paddingRight="@dimen/dimen_20dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_mroe"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/dimen_15sp"
+                android:textColor="@android:color/white"
+                android:text="@string/str_go_setting"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/dimen_13sp"
-            android:textColor="@android:color/white"
-            android:text="@string/str_more"
-            android:layout_marginLeft="@dimen/dimen_10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_mroe"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dimen_13sp"
+                android:textColor="@android:color/white"
+                android:text="@string/str_more"
+                android:layout_marginLeft="@dimen/dimen_10dp"/>
 
-    <LinearLayout
-        android:id="@+id/btn_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_49.5dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@color/colorPrimaryDark">
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_word_plus"/>
+        <LinearLayout
+            android:id="@+id/btn_addwords"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_49.5dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/dimen_15sp"
-            android:textColor="@android:color/white"
-            android:text="@string/str_btn_add_words"
-            android:layout_marginLeft="@dimen/dimen_10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_word_plus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dimen_15sp"
+                android:textColor="@android:color/white"
+                android:text="@string/str_btn_add_words"
+                android:layout_marginLeft="@dimen/dimen_10dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
