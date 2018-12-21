@@ -37,26 +37,6 @@
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:layout_weight="1" />
 
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1">-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/ll_list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<include-->
-                <!--android:id="@+id/ll_add_voca"-->
-                <!--layout="@layout/listview_voca_manage" />-->
-
-            <!--<include layout="@layout/listview_voca_manage" />-->
-
-        <!--</LinearLayout>-->
-
-    <!--</ScrollView>-->
 
     <LinearLayout
         android:id="@+id/ll_bottom"

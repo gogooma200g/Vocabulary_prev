@@ -128,7 +128,7 @@ public class VocaListDAO extends BaseDao {
     public void delete(VoVocaList info) {
 
         SQLiteDatabase db = getWritableConnection();
-        boolean isInsert = false;
+        boolean isInsert = "I".equals(info.getTYPE());
 
         if(isInsert) {
             String selection = DaoColumns.VocaListColumns.C_ID + " = ?";
@@ -147,7 +147,7 @@ public class VocaListDAO extends BaseDao {
         long newRowId = db.insert(DaoColumns.VocaListColumns.T_VOCABULARY_LIST, null, values);
 
         if(newRowId == -1) {
-            ToastUtil.show(mContext, "VocaList insert is Failed");
+            ToastUtil.show(mContext, "VocaList delete fail");
         }
     }
 

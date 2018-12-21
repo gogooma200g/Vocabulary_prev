@@ -9,6 +9,7 @@
 
     <color name="gradient_bg_end">#76c9d8</color>
     <color name="gradient_bg_start">#2897cc</color>
+    <color name="top_bg">#63bdd5</color>
     <!--<color name="gradient_bg_end">#fabc69</color>-->
     <!--<color name="gradient_bg_start">#f7e98a</color>-->
 

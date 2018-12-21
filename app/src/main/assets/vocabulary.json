@@ -9,27 +9,31 @@
       "VOCA_LIST": [
         {
           "ID": "1",
+          "VOCA_ID": "1",
           "LIST_ID": "1",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
-          "MEMO_YN": "Y"
+          "MEMO_YN": "N"
         },
         {
           "ID": "2",
+          "VOCA_ID": "2",
           "LIST_ID": "1",
-          "WORD": "the plot thickens2",
+          "WORD": "Let's push through this week harder as we always have been doing.",
           "MEAN": "사정이 더 복잡해 지고 있다 2",
           "MEMO_YN": "Y"
         },
         {
           "ID": "3",
+          "VOCA_ID": "3",
           "LIST_ID": "1",
-          "WORD": "the plot thickens3",
+          "WORD": "Let's push through this week harder as we always have been doing.",
           "MEAN": "사정이 더 복잡해 지고 있다 3",
-          "MEMO_YN": "Y"
+          "MEMO_YN": "N"
         },
         {
           "ID": "4",
+          "VOCA_ID": "4",
           "LIST_ID": "1",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 4",
@@ -37,38 +41,115 @@
         },
         {
           "ID": "5",
+          "VOCA_ID": "5",
           "LIST_ID": "1",
           "WORD": "the plot thickens2",
-          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEAN": "사정이 더 복잡해 지고 있다 5",
           "MEMO_YN": "Y"
         },
         {
           "ID": "6",
+          "VOCA_ID": "6",
           "LIST_ID": "1",
-          "WORD": "the plot thickens3",
-          "MEAN": "사정이 더 복잡해 지고 있다",
-          "MEMO_YN": "Y"
+          "WORD": "Let's push through this week harder as we always have been doing.3",
+          "MEAN": "사정이 더 복잡해 지고 있다 6",
+          "MEMO_YN": "N"
         },
         {
           "ID": "7",
+          "VOCA_ID": "7",
           "LIST_ID": "1",
           "WORD": "the plot thickens",
-          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEAN": "사정이 더 복잡해 지고 있다 7",
           "MEMO_YN": "Y"
         },
         {
           "ID": "8",
+          "VOCA_ID": "8",
           "LIST_ID": "1",
           "WORD": "the plot thickens2",
-          "MEAN": "사정이 더 복잡해 지고 있다",
+          "MEAN": "사정이 더 복잡해 지고 있다 8",
           "MEMO_YN": "Y"
         },
         {
           "ID": "9",
+          "VOCA_ID": "9",
           "LIST_ID": "1",
-          "WORD": "the plot thickens3",
-          "MEAN": "사정이 더 복잡해 지고 있다",
+          "WORD": "Let's push through this week harder as we always have been doing.",
+          "MEAN": "사정이 더 복잡해 지고 있다 9",
+          "MEMO_YN": "N"
+        },
+        {
+          "ID": "10",
+          "VOCA_ID": "10",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 10",
           "MEMO_YN": "Y"
+        },
+        {
+          "ID": "11",
+          "VOCA_ID": "11",
+          "LIST_ID": "1",
+          "WORD": "Let's push through this week harder as we always have been doing.",
+          "MEAN": "사정이 더 복잡해 지고 있다 11",
+          "MEMO_YN": "N"
+        },
+        {
+          "ID": "12",
+          "VOCA_ID": "12",
+          "LIST_ID": "1",
+          "WORD": "Let's push through this week harder as we always have been doing.",
+          "MEAN": "사정이 더 복잡해 지고 있다 12",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "13",
+          "VOCA_ID": "13",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 13",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "14",
+          "VOCA_ID": "14",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다 14",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "15",
+          "VOCA_ID": "15",
+          "LIST_ID": "1",
+          "WORD": "Let's push through this week harder as we always have been doing.3",
+          "MEAN": "사정이 더 복잡해 지고 있다 15",
+          "MEMO_YN": "Y"
+        },
+        {
+          "ID": "16",
+          "VOCA_ID": "16",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens",
+          "MEAN": "사정이 더 복잡해 지고 있다 16",
+          "MEMO_YN": "N"
+        },
+        {
+          "ID": "17",
+          "VOCA_ID": "17",
+          "LIST_ID": "1",
+          "WORD": "the plot thickens2",
+          "MEAN": "사정이 더 복잡해 지고 있다 17",
+          "MEMO_YN": "N"
+        },
+        {
+          "ID": "18",
+          "VOCA_ID": "18",
+          "LIST_ID": "1",
+          "WORD": "Let's push through this week harder as we always have been doing.",
+          "MEAN": "사정이 더 복잡해 지고 있다 18",
+          "MEMO_YN": "N"
         }
       ]
     },
@@ -79,6 +160,7 @@
       "VOCA_LIST": [
         {
           "ID": "20",
+          "VOCA_ID": "20",
           "LIST_ID": "2",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -86,6 +168,7 @@
         },
         {
           "ID": "21",
+          "VOCA_ID": "21",
           "LIST_ID": "2",
           "WORD": "the plot thickens2",
           "MEAN": "사정이 더 복잡해 지고 있다 2",
@@ -93,6 +176,7 @@
         },
         {
           "ID": "22",
+          "VOCA_ID": "22",
           "LIST_ID": "2",
           "WORD": "the plot thickens3",
           "MEAN": "사정이 더 복잡해 지고 있다 3",
@@ -100,6 +184,7 @@
         },
         {
           "ID": "23",
+          "VOCA_ID": "23",
           "LIST_ID": "2",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 4",
@@ -107,6 +192,7 @@
         },
         {
           "ID": "24",
+          "VOCA_ID": "24",
           "LIST_ID": "2",
           "WORD": "the plot thickens2",
           "MEAN": "사정이 더 복잡해 지고 있다",
@@ -121,6 +207,7 @@
       "VOCA_LIST": [
         {
           "ID": "30",
+          "VOCA_ID": "30",
           "LIST_ID": "3",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -135,6 +222,7 @@
       "VOCA_LIST": [
         {
           "ID": "40",
+          "VOCA_ID": "40",
           "LIST_ID": "4",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -149,6 +237,7 @@
       "VOCA_LIST": [
         {
           "ID": "50",
+          "VOCA_ID": "50",
           "LIST_ID": "5",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -163,6 +252,7 @@
       "VOCA_LIST": [
         {
           "ID": "60",
+          "VOCA_ID": "60",
           "LIST_ID": "6",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -177,6 +267,7 @@
       "VOCA_LIST": [
         {
           "ID": "70",
+          "VOCA_ID": "70",
           "LIST_ID": "7",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -191,6 +282,7 @@
       "VOCA_LIST": [
         {
           "ID": "80",
+          "VOCA_ID": "80",
           "LIST_ID": "8",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -205,6 +297,7 @@
       "VOCA_LIST": [
         {
           "ID": "90",
+          "VOCA_ID": "90",
           "LIST_ID": "9",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -219,6 +312,7 @@
       "VOCA_LIST": [
         {
           "ID": "100",
+          "VOCA_ID": "100",
           "LIST_ID": "10",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -233,6 +327,7 @@
       "VOCA_LIST": [
         {
           "ID": "110",
+          "VOCA_ID": "110",
           "LIST_ID": "11",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -247,6 +342,7 @@
       "VOCA_LIST": [
         {
           "ID": "120",
+          "VOCA_ID": "120",
           "LIST_ID": "12",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -261,6 +357,7 @@
       "VOCA_LIST": [
         {
           "ID": "130",
+          "VOCA_ID": "130",
           "LIST_ID": "13",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -275,6 +372,7 @@
       "VOCA_LIST": [
         {
           "ID": "140",
+          "VOCA_ID": "140",
           "LIST_ID": "14",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",
@@ -289,6 +387,7 @@
       "VOCA_LIST": [
         {
           "ID": "150",
+          "VOCA_ID": "150",
           "LIST_ID": "15",
           "WORD": "the plot thickens",
           "MEAN": "사정이 더 복잡해 지고 있다 1",

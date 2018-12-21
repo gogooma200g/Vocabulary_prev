@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/bluish">
+        android:background="@color/top_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:gravity="center_vertical">
 
             <EditText
+                android:id="@+id/et_srch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,10 +38,12 @@
                 android:hint="@string/str_srch"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_search"
-                android:layout_marginRight="@dimen/dimen_15dp"/>
+                android:id="@+id/btn_srch"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@drawable/ic_search"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </LinearLayout>
 

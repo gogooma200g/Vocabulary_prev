@@ -97,6 +97,7 @@ public class VocaManageActivity extends ToolbarBaseActivity implements View.OnCl
     };
 
     private void clearSelectedAdapter() {
+        adapter.removeNewWord();
         for(VoVocaList voVocaList : VoVocaListArray.getInstance().getVOCALIST_LIST()) {
             voVocaList.setModifying(false);
         }

@@ -28,7 +28,7 @@
                 android:textSize="@dimen/dimen_15sp"
                 android:gravity="center"/>
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_delete"
                 android:layout_width="@dimen/dimen_100dp"
                 android:layout_height="match_parent"
@@ -43,12 +43,14 @@
             android:id="@+id/ll_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dimen_13dp"
-            android:paddingLeft="@dimen/dimen_17dp"
-            android:paddingRight="@dimen/dimen_17dp"
-            android:paddingTop="@dimen/dimen_13dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@android:color/white"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_17dp"
+            android:paddingTop="@dimen/dimen_13dp"
+            android:paddingRight="@dimen/dimen_17dp"
+            android:paddingBottom="@dimen/dimen_13dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,18 +83,18 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/btn_play"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_width="@dimen/dimen_25dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_speaker" />
 
-                <Button
+                <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_memorize"
                     android:layout_width="@dimen/dimen_40dp"
                     android:layout_height="@dimen/dimen_16dp"
-                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
                     android:background="@drawable/sel_btn_voca_memorize"
                     android:text="암기"
                     android:textColor="@android:color/white"

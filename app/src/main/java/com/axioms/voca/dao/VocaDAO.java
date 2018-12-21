@@ -19,6 +19,17 @@ import java.util.ArrayList;
 
 public class VocaDAO extends BaseDao {
 
+    private static VocaDAO instance;
+
+    public static VocaDAO getInstance(Context context) {
+        if(instance == null) {
+            synchronized (VocaDAO.class) {
+                instance = new VocaDAO(context);
+            }
+        }
+        return instance;
+    }
+
     public VocaDAO(Context context) {
         super(context);
         this.tableName = DaoColumns.VocaColumns.T_VOCABULARY;
@@ -151,15 +162,36 @@ public class VocaDAO extends BaseDao {
     /**
      * delete
      */
-    public void delete(VoVoca voca) {
+    public void delete(VoVoca info) {
         SQLiteDatabase db = getWritableConnection();
+        boolean isInsert = "I".equals(info.getTYPE());
 
-        String selection = DaoColumns.VocaListColumns.C_ID + " = ?";
-        String [] selectionArgs = {voca.getID()};
-        int deletedRows = db.delete(DaoColumns.VocaColumns.T_VOCABULARY, selection, selectionArgs);
+        if(isInsert) {
+            String selection = DaoColumns.VocaColumns.C_LIST_ID + " = ?";
+            String [] selectionArgs = {info.getLIST_ID()};
+            int deletedRows = db.delete(DaoColumns.VocaColumns.T_VOCABULARY, selection, selectionArgs);
 
-        LogUtil.i("deleteRows : " + deletedRows);
+            LogUtil.i("deleteRows : " + deletedRows);
+            return;
+        }
+
+//        String selection = DaoColumns.VocaListColumns.C_LIST_ID + " = ?";
+//        String [] selectionArgs = {info.getLIST_ID()};
+//        int deletedRows = db.delete(DaoColumns.VocaColumns.T_VOCABULARY, selection, selectionArgs);
+
+        ContentValues values = new ContentValues();
+        values.put(DaoColumns.VocaColumns.C_LIST_ID, info.getLIST_ID());
+        values.put(DaoColumns.VocaColumns.C_LIST_ID, info.getVOCA_ID());
+        values.put(DaoColumns.VocaColumns.C_TYPE, "D");
+
+        long newRowId = db.insert(DaoColumns.VocaColumns.T_VOCABULARY, null, values);
+
+        if(newRowId == -1) {
+            ToastUtil.show(mContext, "Voca delete fail");
+        }
     }
+
+    //public void update
 
 //    public void delete(VoVoca voca) {
 //        String query = "DELETE FROM " + tableName +

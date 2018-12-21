@@ -80,6 +80,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    public void setFragment(int pos) {
+        LogUtil.i("pos :: " + pos);
+        mViewPager.setCurrentItem(pos);
+    }
+
     private long pressedTime = 0;
 
     @Override

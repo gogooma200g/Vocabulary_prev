@@ -6,13 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -43,6 +48,8 @@ import butterknife.ButterKnife;
 public class MainVocaFragment extends Fragment implements View.OnClickListener, MainActivity.OnBackPressedListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+    private  MainActivity mainActivity = null;
     private ArrayList<VoVoca> vocaArrayList = new ArrayList<>();
 
     @BindView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
@@ -68,7 +75,8 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((MainActivity)context).setOnBackPressedListener(this);
+        mainActivity = (MainActivity) context;
+        mainActivity.setOnBackPressedListener(this);
     }
 
     @Override
@@ -110,13 +118,38 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         Toolbar mToolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_main_search);
-        mToolbar.inflateMenu(R.menu.menu_main);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //mToolbar.inflateMenu(R.menu.menu_main);
 
         setHasOptionsMenu(true);
 
         rootView.findViewById(R.id.btn_voca_change).setOnClickListener(this);
         rootView.findViewById(R.id.btn_voca_list).setOnClickListener(this);
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        ((AppCompatActivity) getActivity()).getMenuInflater().inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_search) {
+            mainActivity.setFragment(2);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {

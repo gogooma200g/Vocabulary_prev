@@ -2,6 +2,8 @@ package com.axioms.voca.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -17,6 +20,7 @@ import com.axioms.voca.activity.VocaManageActivity;
 import com.axioms.voca.customview.CustomEditeText;
 import com.axioms.voca.dao.VocaListDAO;
 import com.axioms.voca.dialog.CommDialog;
+import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.util.StringUtil;
 import com.axioms.voca.vo.VoVocaList;
 
@@ -65,7 +69,11 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         VocaListViewHolder viewHolder = (VocaListViewHolder) holder;
 
         viewHolder.et_conts.setText(voVocaList.getTITLE());
+        viewHolder.et_conts.setOnClickListener(this);
+        viewHolder.et_conts.setTag(voVocaList);
+        viewHolder.et_conts.setTag(R.id.IDX, position);
         viewHolder.et_conts.setOnBackPressListener(onBackPressListener);
+
         viewHolder.btn_write.setOnClickListener(this);
         viewHolder.btn_write.setTag(voVocaList);
         viewHolder.btn_write.setTag(R.id.IDX, position);
@@ -84,7 +92,7 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         viewHolder.btn_cancel.setTag(R.id.IDX, position);
 
         if(voVocaList.isModifying()) {
-            viewHolder.ll_itme.setSelected(true);
+            viewHolder.ll_item.setSelected(true);
             viewHolder.et_conts.setFocusable(true);
             viewHolder.et_conts.setFocusableInTouchMode(true);
             viewHolder.et_conts.requestFocus();
@@ -94,7 +102,7 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             viewHolder.btn_confirm.setVisibility(View.VISIBLE);
             viewHolder.btn_cancel.setVisibility(View.VISIBLE);
         }else{
-            viewHolder.ll_itme.setSelected(false);
+            viewHolder.ll_item.setSelected(false);
             viewHolder.et_conts.setFocusable(false);
             viewHolder.et_conts.setFocusableInTouchMode(false);
             viewHolder.btn_write.setVisibility(View.VISIBLE);
@@ -120,7 +128,12 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         VoVocaList info = (VoVocaList) view.getTag();
         int pos = (int) view.getTag(R.id.IDX);
 
-        if(R.id.btn_write == view.getId()) {
+        if(R.id.et_conts == view.getId()) {
+            LogUtil.i(info.getTITLE());
+
+        }else if(R.id.btn_write == view.getId()) {
+
+            removeNewWord();
 
             if(modifyingInfo != null) {
                 modifyingInfo.setModifying(false);
@@ -157,18 +170,16 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
         }else if(R.id.btn_delete == view.getId()) {
+
+            removeNewWord();
+
             closeKeyboard();
             showDialogDelete(pos);
+
+            //VocaListDAO.getInstance(context).delete(info);
         }else if(R.id.btn_cancel == view.getId()) {
 
-            if(isAddNew) {
-                isAddNew = false;
-                dataList.remove(0);
-                notifyItemRemoved(0);
-                notifyItemRangeChanged(0, dataList.size());
-                closeKeyboard();
-                return;
-            }
+            removeNewWord();
 
             info.setModifying(false);
             notifyItemChanged(pos);
@@ -176,10 +187,14 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    /** add NewWord */
     boolean isAddNew = false;
     public void addNewWord() {
 
-        if(isAddNew) return;
+        if(isAddNew) {
+            removeNewWord();
+            return;
+        }
 
         this.isAddNew = true;
         VoVocaList info = new VoVocaList();
@@ -191,7 +206,16 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         dataList.add(0, info);
         notifyItemInserted(0);
         showKeyboardState();
+    }
 
+    /** remove NewWord */
+    public void removeNewWord() {
+        if(!isAddNew) return;
+
+        isAddNew = false;
+        dataList.remove(0);
+        notifyItemRemoved(0);
+        notifyItemRangeChanged(0, dataList.size());
     }
 
     private CustomEditeText.OnBackPressListener onBackPressListener = new CustomEditeText.OnBackPressListener() {
@@ -247,13 +271,13 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public class VocaListViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.ll_itme) LinearLayout ll_itme;
         //@BindView(R.id.et_conts) EditText et_conts;
+        @BindView(R.id.ll_item) ConstraintLayout ll_item;
         @BindView(R.id.btn_write) ImageButton btn_write;
         @BindView(R.id.btn_confirm) ImageButton btn_confirm;
         @BindView(R.id.btn_delete) ImageButton btn_delete;
         @BindView(R.id.btn_cancel) ImageButton btn_cancel;
-        CustomEditeText et_conts;
+        private CustomEditeText et_conts;
 
         public VocaListViewHolder(View view) {
             super(view);
