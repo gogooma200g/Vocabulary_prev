@@ -28,6 +28,8 @@
     <color name="black_95">#959595</color>  <!--hint-->
     <color name="orangish">#f8835f</color>
     <color name="white_f6">#f6f6f6</color>
+    <color name="white_50">#80ffffff</color>
+    <color name="white_40">#66ffffff</color>
     <color name="white_eb">#ebebeb</color>
     <color name="cobalt">#1e4787</color>
     <color name="yellow">#fdbd39</color>

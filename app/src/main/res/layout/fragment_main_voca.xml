@@ -63,7 +63,6 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/tv_currentNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/white"
@@ -134,6 +133,7 @@
                             android:gravity="center">
 
                             <Button
+                                android:id="@+id/btn_state"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
@@ -181,6 +181,17 @@
                         sothree:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginBottom="@dimen/dimen_7dp"
                         sothree:dotColor="@color/white_30"/>
+
+                    <TextView
+                        android:id="@+id/tv_currentNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/dimen_12sp"
+                        android:textColor="@color/white_40"
+                        sothree:layout_constraintBottom_toBottomOf="parent"
+                        sothree:layout_constraintRight_toRightOf="parent"
+                        android:layout_marginRight="@dimen/dimen_25dp"
+                        android:layout_marginBottom="@dimen/dimen_7dp"/>
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -234,8 +245,6 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical"
-        android:clickable="true"
-        android:focusable="false"
         android:id="@+id/dragView"
         android:layout_marginTop="@dimen/dimen_50dp">
 
@@ -243,7 +252,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_56dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/name"
@@ -275,16 +285,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_addWords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen_16sp"
                 android:text="단어추가 "
                 android:textColor="@color/medium_blue"
                 android:paddingRight="@dimen/dimen_22dp"
                 android:paddingLeft="@dimen/dimen_22dp"
-                android:background="@android:color/transparent"
-                android:drawableEnd="@drawable/ic_main_arrow" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:drawableEnd="@drawable/sel_btn_arrow" />
+
 
         </LinearLayout>
 
@@ -293,70 +305,71 @@
             android:layout_height="1dp"
             android:background="@color/white_47" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_56dp"
-            android:orientation="horizontal"
-            android:background="@color/white_47"
-            android:gravity="center_vertical">
-            
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginRight="@dimen/dimen_10dp">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dimen_50dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:background="@color/white_47"-->
+            <!--android:gravity="center_vertical">-->
+            <!---->
+            <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginRight="@dimen/dimen_10dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str_english"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dimen_17sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/str_english"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:textSize="@dimen/dimen_17sp"/>-->
 
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_word_reverse"
-                    android:background="@android:color/transparent"
-                    android:layout_marginLeft="@dimen/dimen_25dp"
-                    android:layout_marginRight="@dimen/dimen_25dp"/>
+                <!--<ImageButton-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="26dp"-->
+                    <!--android:src="@drawable/ic_word_reverse"-->
+                    <!--android:layout_marginLeft="@dimen/dimen_25dp"-->
+                    <!--android:layout_marginRight="@dimen/dimen_25dp"-->
+                    <!--android:background="?attr/selectableItemBackgroundBorderless"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str_korea"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dimen_17sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/str_korea"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:textSize="@dimen/dimen_17sp"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_translate"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/dimen_15sp"
-                android:background="@drawable/btn_translate"
-                android:layout_marginRight="@dimen/dimen_15dp"
-                android:layout_marginTop="@dimen/dimen_3dp"
-                android:layout_marginBottom="@dimen/dimen_1dp"
-                android:paddingBottom="@dimen/dimen_3dp"
-                android:visibility="gone"/>
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/str_translate"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="@dimen/dimen_15sp"-->
+                <!--android:background="@drawable/btn_translate"-->
+                <!--android:layout_marginRight="@dimen/dimen_15dp"-->
+                <!--android:layout_marginTop="@dimen/dimen_3dp"-->
+                <!--android:layout_marginBottom="@dimen/dimen_1dp"-->
+                <!--android:paddingBottom="@dimen/dimen_3dp"-->
+                <!--android:visibility="gone"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white_47"></LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/white_47"></LinearLayout>-->
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5">
 
-            <EditText
+            <com.axioms.voca.customview.CustomEditeText
+                android:id="@+id/et_eng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dimen_17sp"
@@ -364,15 +377,19 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/str_hint_eng"
                 android:textColorHint="@color/black_95"
-                android:paddingTop="@dimen/dimen_20dp"
+                android:paddingTop="@dimen/dimen_15dp"
                 android:paddingLeft="@dimen/dimen_23dp"
                 android:paddingRight="@dimen/dimen_50dp"
-                android:paddingBottom="@dimen/dimen_20dp"/>
+                android:paddingBottom="@dimen/dimen_15dp"
+                android:maxLines="5"
+                android:privateImeOptions="defaultInputmode=english"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_word_delete"
+                android:id="@+id/btn_remove_eng"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@drawable/ic_word_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 sothree:layout_constraintRight_toRightOf="parent"
                 sothree:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="@dimen/dimen_23dp"
@@ -390,7 +407,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <EditText
+            <com.axioms.voca.customview.CustomEditeText
+                android:id="@+id/et_kor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dimen_17sp"
@@ -398,15 +416,19 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/str_hint_kor"
                 android:textColorHint="@color/black_95"
-                android:paddingTop="@dimen/dimen_20dp"
+                android:paddingTop="@dimen/dimen_15dp"
                 android:paddingLeft="@dimen/dimen_23dp"
                 android:paddingRight="@dimen/dimen_50dp"
-                android:paddingBottom="@dimen/dimen_20dp"/>
+                android:paddingBottom="@dimen/dimen_15dp"
+                android:maxLines="5"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_word_delete"
+                android:id="@+id/btn_remove_kor"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_word_delete"
                 sothree:layout_constraintRight_toRightOf="parent"
                 sothree:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="@dimen/dimen_23dp"
@@ -420,7 +442,8 @@
             android:layout_height="@dimen/dimen_49.5dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@color/slate_grey">
+            android:background="@color/slate_grey"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -440,7 +463,7 @@
         <LinearLayout
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_49.5dp"
+            android:layout_height="@dimen/dimen_48dp"
             android:orientation="horizontal"
             android:gravity="center"
             android:background="@color/gradient_bg_start"
@@ -449,7 +472,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dimen_15sp"
+                android:textSize="@dimen/dimen_16sp"
                 android:textColor="@android:color/white"
                 android:text="@string/str_confirm"
                 android:layout_marginRight="@dimen/dimen_10dp"/>

@@ -30,6 +30,12 @@
         </activity>
 
         <activity
+            android:name=".permission.PermissionActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+            android:theme="@style/Theme.Transparent.Permission"/>
+
+        <activity
             android:name=".activity.VocaManageActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|navigation|touchscreen|uiMode"
             android:screenOrientation="portrait" />

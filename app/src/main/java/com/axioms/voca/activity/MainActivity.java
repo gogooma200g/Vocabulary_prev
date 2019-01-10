@@ -1,17 +1,23 @@
 package com.axioms.voca.activity;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.widget.Toolbar;
 
 import com.axioms.voca.R;
 import com.axioms.voca.base.GlobalApplication;
+import com.axioms.voca.dialog.CommDialog;
 import com.axioms.voca.fragment.MainDictFragment;
 import com.axioms.voca.fragment.MainSrchFragment;
 import com.axioms.voca.fragment.MainVocaFragment;
+import com.axioms.voca.permission.Permission;
+import com.axioms.voca.permission.PermissionListener;
 import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.util.ToastUtil;
@@ -20,6 +26,7 @@ import com.axioms.voca.vo.VoVocaListArray;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -39,7 +46,7 @@ public class MainActivity extends BaseActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
+     * fragments for each of the szections. We use a
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
@@ -68,6 +75,12 @@ public class MainActivity extends BaseActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(1);
 
+        Permission.with(this)
+                .setPermissionListener(permissionListener)
+                .setTitle(R.string.dialog_permission_title)
+                .setMessage(R.string.dialog_permission_conts)
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .check();
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +93,18 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    PermissionListener permissionListener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            LogUtil.i("onPermissionGranted");
+        }
+
+        @Override
+        public void onPermissionDenied(List<String> deniedPermissions) {
+            LogUtil.i("onPermissionDenied");
+        }
+    };
+
     public void setFragment(int pos) {
         LogUtil.i("pos :: " + pos);
         mViewPager.setCurrentItem(pos);
@@ -89,7 +114,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
         if(onBackPressedListener.onBack()) {
             //onBackPressedListener.onBack();
         }else{

@@ -13,6 +13,7 @@
 
     <string name="error_app">알수없는 오류가 발생했습니다. 앱을 재실행 합니다.\n오류 정보는 본사로 전송됩니다.</string>
 
+    <string name="str_all">전체</string>
     <string name="str_memorize">암기</string>
     <string name="str_not_memorize">미암기</string>
 
@@ -21,7 +22,8 @@
     <string name="str_translate">번역하기</string>
 
     <string name="str_hint_eng">영어를 입력해 주세요.</string>
-    <string name="str_hint_kor">한글를 입력해 주세요.</string>
+    <string name="str_hint_kor">한글 뜻을 입력해 주세요.</string>
+    <string name="str_add_word">단어가 추가되었습니다.</string>
     <string name="str_go_setting">설정으로 이동</string>
 
     <string name="str_more">더보기</string>

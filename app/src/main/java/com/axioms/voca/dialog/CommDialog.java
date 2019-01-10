@@ -72,7 +72,7 @@ public class CommDialog extends Dialog implements View.OnClickListener {
             btn1.setText(text[0]);
             btn1.setVisibility(View.VISIBLE);
             btn1.setOnClickListener(this);
-            btn1.setBackgroundResource(R.drawable.btn_popup_left);
+            btn1.setBackgroundResource(R.drawable.btn_popup_one);
         }
         else if(text.length == 2) {
             Button btn1 = (Button) findViewById(R.id.btn_first);

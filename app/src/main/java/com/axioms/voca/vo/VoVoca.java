@@ -1,10 +1,12 @@
 package com.axioms.voca.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by kiel1 on 2018-11-20.
  */
 
-public class VoVoca {
+public class VoVoca implements Serializable {
     private String ID;
     private String VOCA_ID;
     private String LIST_ID;

@@ -218,10 +218,15 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyItemRangeChanged(0, dataList.size());
     }
 
-    private CustomEditeText.OnBackPressListener onBackPressListener = new CustomEditeText.OnBackPressListener() {
+    private CustomEditeText.onEditTextListener onBackPressListener = new CustomEditeText.onEditTextListener() {
         @Override
         public void onBackPress() {
             closeKeyboard();
+        }
+
+        @Override
+        public void onFocusMoved() {
+
         }
     };
 
@@ -277,12 +282,13 @@ public class VocaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @BindView(R.id.btn_confirm) ImageButton btn_confirm;
         @BindView(R.id.btn_delete) ImageButton btn_delete;
         @BindView(R.id.btn_cancel) ImageButton btn_cancel;
-        private CustomEditeText et_conts;
+        @BindView(R.id.et_conts) CustomEditeText et_conts;
+        //private CustomEditeText et_conts;
 
         public VocaListViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            et_conts = view.findViewById(R.id.et_conts);
+            //et_conts = view.findViewById(R.id.et_conts);
         }
     }
 }

@@ -12,11 +12,12 @@ import com.axioms.voca.util.LogUtil;
 
 public class CustomEditeText extends AppCompatEditText {
 
-    public interface OnBackPressListener {
+    public interface onEditTextListener {
         void onBackPress();
+        void onFocusMoved();
     }
 
-    private OnBackPressListener onBackPressListener;
+    private onEditTextListener onEditTextListener;
     private InputMethodManager inputMethodManager;
 
     private boolean showKeyboard = false;
@@ -52,6 +53,7 @@ public class CustomEditeText extends AppCompatEditText {
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         if(!focused) this.showKeyboard = false;
+        if(focused) onEditTextListener.onFocusMoved();
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
 
@@ -69,8 +71,8 @@ public class CustomEditeText extends AppCompatEditText {
         return result;
     }
 
-    public void setOnBackPressListener(OnBackPressListener listener) {
-        onBackPressListener = listener;
+    public void setOnBackPressListener(onEditTextListener listener) {
+        onEditTextListener = listener;
     }
 
     @Override
@@ -81,8 +83,9 @@ public class CustomEditeText extends AppCompatEditText {
 
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && onBackPressListener != null) {
-            onBackPressListener.onBackPress();
+        LogUtil.i("onKeyPreIme");
+        if (keyCode == KeyEvent.KEYCODE_BACK && onEditTextListener != null) {
+            onEditTextListener.onBackPress();
         }
         return super.onKeyPreIme(keyCode, event);
     }
