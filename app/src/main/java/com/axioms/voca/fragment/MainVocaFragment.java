@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +41,7 @@ import com.axioms.voca.activity.VocaManageActivity;
 import com.axioms.voca.base.GlobalApplication;
 import com.axioms.voca.customview.CustomEditeText;
 import com.axioms.voca.sync.DataSyncThread;
+import com.axioms.voca.tts.SpeechHelper;
 import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.util.StringUtil;
@@ -50,6 +53,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +65,9 @@ import butterknife.ButterKnife;
 public class MainVocaFragment extends Fragment implements View.OnClickListener, MainActivity.OnBackPressedListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private final int CHECK_CODE = 0x1;
 
+    private SpeechHelper speaker;
     private  MainActivity mainActivity = null;
     private ArrayList<VoVoca> vocaArrayList = new ArrayList<>();
     private ArrayList<VoVoca> allVocaArrayList = new ArrayList<>();
@@ -70,6 +76,11 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         All, Memorial, NoMemorial
     }
 
+    private enum PlayState {
+        All, Vocabulary, Mean
+    }
+
+    private PlayState playState = PlayState.All;
     private State currentState = State.All;
 
     @BindView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
@@ -87,9 +98,12 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     @BindView(R.id.btn_confirm) LinearLayout btn_confirm;
     @BindView(R.id.tv_currentNum) TextView tv_currentNum;
     @BindView(R.id.btn_state) Button btn_state;
+    @BindView(R.id.btn_play) LinearLayout btn_play;
+    @BindView(R.id.ib_play) ImageButton ib_play;
 
     private Animation animationUp;
     private VocaPagerAdapter vocaPagerAdapter;
+    private int currentPos = 0;
 
     public static boolean isVisibleWords = true;
     public static boolean isVisibleMeans = true;
@@ -133,6 +147,23 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
             }
         });
+
+        //TTS Setting
+        checkTTS();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        LogUtil.i("resultCode :  " + resultCode);
+        if(requestCode == CHECK_CODE){
+            if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
+                speaker = new SpeechHelper(getContext(), utteranceProgressListener);
+            }else {
+                Intent install = new Intent();
+                install.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                startActivity(install);
+            }
+        }
     }
 
     @Override
@@ -156,29 +187,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         slidingLayout.setMinFlingVelocity(500);
         //slidingLayout.setAnchorPoint((float) 0.9);
-
-        slidingLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-                float scale = (float) (1 - ((slideOffset * 0.1)));
-                //float scale2 = (float) ((slideOffset * 0.2) + 0.8);
-                //LogUtil.i("onPanelSlide, offset " + slideOffset + " / " + scale);
-                ll_vocaCard.setScaleX(scale);
-                ll_vocaCard.setScaleY(scale);
-            }
-
-            @Override
-            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-                LogUtil.i("onPanelStateChanged " + newState);
-                if(newState.equals(SlidingUpPanelLayout.PanelState.COLLAPSED)){
-                    btn_addWords.setSelected(false);
-                    hideWordsView();
-                }else if(newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
-                    btn_addWords.setSelected(true);
-                    showWordsView();
-                }
-            }
-        });
+        slidingLayout.addPanelSlideListener(panelSlideListener);
 
         vocaPagerAdapter = new VocaPagerAdapter(getChildFragmentManager());
 
@@ -200,39 +209,17 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         //mToolbar.inflateMenu(R.menu.menu_main);
-
         setHasOptionsMenu(true);
+
+        btn_play.setOnClickListener(this);
 
         btn_voca_change.setOnClickListener(this);
         btn_voca_list.setOnClickListener(this);
 
         et_eng.setOnBackPressListener(onBackPressListener);
         et_kor.setOnBackPressListener(onBackPressListener);
-//        et_eng.addTextChangedListener(textWatcher);
-//        et_kor.addTextChangedListener(textWatcher);
-        et_eng.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                if(!isShowKeyboard) {
-                    et_eng.requestFocus();
-                    isShowKeyboard = true;
-                    btn_setting.setVisibility(View.GONE);
-                    btn_confirm.setVisibility(View.INVISIBLE);
-                    btn_confirm.startAnimation(animationUp);
-                }
-            }
-        });
-        et_kor.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                et_kor.requestFocus();
-                isShowKeyboard = true;
-                btn_setting.setVisibility(View.GONE);
-                btn_confirm.setVisibility(View.INVISIBLE);
-                btn_confirm.startAnimation(animationUp);
-            }
-
-        });
+        et_eng.setOnClickListener(this);
+        et_kor.setOnClickListener(this);
 
         btn_remove_eng.setOnClickListener(this);
         btn_remove_kor.setOnClickListener(this);
@@ -243,7 +230,15 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         return rootView;
     }
 
-//    private TextWatcher textWatcher = new TextWatcher() {
+
+
+    @Override
+    public void onDestroy() {
+        speaker.destroy();
+        super.onDestroy();
+    }
+
+    //    private TextWatcher textWatcher = new TextWatcher() {
 //        @Override
 //        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 //            LogUtil.i("beforeTextChanged : " + charSequence);
@@ -260,6 +255,31 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 //        }
 //    };
 
+    /**  SlidingPanel Listener **/
+    private SlidingUpPanelLayout.PanelSlideListener panelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
+        @Override
+        public void onPanelSlide(View panel, float slideOffset) {
+            float scale = (float) (1 - ((slideOffset * 0.1)));
+            //float scale2 = (float) ((slideOffset * 0.2) + 0.8);
+            //LogUtil.i("onPanelSlide, offset " + slideOffset + " / " + scale);
+            ll_vocaCard.setScaleX(scale);
+            ll_vocaCard.setScaleY(scale);
+        }
+
+        @Override
+        public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+            LogUtil.i("onPanelStateChanged " + newState);
+            if(newState.equals(SlidingUpPanelLayout.PanelState.COLLAPSED)){
+                btn_addWords.setSelected(false);
+                hideWordsView();
+            }else if(newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
+                btn_addWords.setSelected(true);
+                showWordsView();
+            }
+        }
+    };
+
+    /**  Page Change Listener **/
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -268,6 +288,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         @Override
         public void onPageSelected(int position) {
+            currentPos = position;
             tv_currentNum.setText((position + 1) + "/" + vocaArrayList.size());
         }
 
@@ -383,6 +404,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         return null;
     }
 
+    /** 데이터 리로딩 **/
     DataSyncThread.DataSyncListener dataSyncListener = new DataSyncThread.DataSyncListener() {
         @Override
         public void success(String response) {
@@ -435,7 +457,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         switch (view.getId()){
             case R.id.btn_voca_change :
-
+                /** Go to VocaManageActivity */
                 if(SlidingUpPanelLayout.PanelState.EXPANDED ==  slidingLayout.getPanelState()) {
                     changePanelAndHandler(PANELLAYOUT_OPEN_VOCA_CHANGE);
                 }
@@ -446,7 +468,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
                 break;
 
             case R.id.btn_voca_list :
-
+                /** Go to VocaListActivity */
                 if(SlidingUpPanelLayout.PanelState.EXPANDED ==  slidingLayout.getPanelState()) {
                     changePanelAndHandler(PANELLAYOUT_OPEN_VOCA_LIST);
                 }
@@ -455,9 +477,11 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
                     getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
                 }
                 break;
+
             case R.id.btn_remove_eng :
                 et_eng.setText("");
                 break;
+
             case R.id.btn_remove_kor :
                 et_kor.setText("");
                 break;
@@ -475,7 +499,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
                 break;
 
             case R.id.btn_state :
-
+                /** memorial State */
                 if(State.All == currentState) {
                     currentState = State.Memorial;
                     btn_state.setText(R.string.str_memorize);
@@ -489,9 +513,89 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
                 stateSetWordArrayList();
                 break;
 
+            case R.id.et_eng :
+                if(!isShowKeyboard) {
+                    et_eng.requestFocus();
+                    isShowKeyboard = true;
+                    btn_setting.setVisibility(View.GONE);
+                    btn_confirm.setVisibility(View.INVISIBLE);
+                    btn_confirm.startAnimation(animationUp);
+                }
+                break;
+
+            case R.id.et_kor :
+                et_kor.requestFocus();
+                isShowKeyboard = true;
+                btn_setting.setVisibility(View.GONE);
+                btn_confirm.setVisibility(View.INVISIBLE);
+                btn_confirm.startAnimation(animationUp);
+                break;
+
+            case R.id.btn_play :
+                if(isPlaying) {
+                    ib_play.setBackgroundResource(R.drawable.ic_main_play);
+                    speaker.stop();
+                    isPlaying = false;
+                    break;
+                }
+                ib_play.setBackgroundResource(R.drawable.ic_main_stop);
+                speaker.setAllowed(true);
+                //speaker.speak("We can only extract the phone number of the sender from the message. ");
+                speakVoca();
+                isPlaying = true;
+                break;
+
         }
     }
 
+    boolean canNextWords = false;
+    /** Speak Voca **/
+    private void speakVoca() {
+
+        String str = "";
+
+        if(playState == PlayState.All) {
+            if(canNextWords) {
+                str = vocaArrayList.get(currentPos).getMEAN();
+                speaker.speak(str, Locale.KOREA, 1.0f);
+                canNextWords = false;
+            }else{
+                str = vocaArrayList.get(currentPos).getWORD();
+                speaker.speak(str, Locale.US, 0.8f);
+                canNextWords = true;
+            }
+        }
+    }
+
+    private void checkTTS(){
+        Intent check = new Intent();
+        check.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(check, CHECK_CODE);
+    }
+
+    private boolean isPlaying = false;
+    private UtteranceProgressListener utteranceProgressListener = new UtteranceProgressListener() {
+        @Override
+        public void onStart(String s) {
+            LogUtil.i("onStart : " + s);
+            isPlaying = true;
+        }
+
+        @Override
+        public void onDone(String s) {
+            LogUtil.i("onDone : " + s);
+            if(vocaArrayList.size() < currentPos) return;
+            if(canNextWords) speakVoca();
+        }
+
+        @Override
+        public void onError(String s) {
+
+            LogUtil.i("onError : " + s);
+        }
+    };
+
+    /** All /  Memorial / No Memorial **/
     private void stateSetWordArrayList() {
         vocaArrayList.clear();
 
@@ -526,7 +630,6 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         if(StringUtil.isNull(et_eng)) {
             ToastUtil.show(getContext(), R.string.str_hint_eng);
             return;
-
         }
 
         if(StringUtil.isNull(et_kor)) {

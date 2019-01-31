@@ -2,12 +2,16 @@ package com.axioms.voca.activity;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.axioms.voca.R;
@@ -18,6 +22,7 @@ import com.axioms.voca.fragment.MainSrchFragment;
 import com.axioms.voca.fragment.MainVocaFragment;
 import com.axioms.voca.permission.Permission;
 import com.axioms.voca.permission.PermissionListener;
+import com.axioms.voca.tts.SpeechHelper;
 import com.axioms.voca.util.CommUtil;
 import com.axioms.voca.util.LogUtil;
 import com.axioms.voca.util.ToastUtil;
@@ -32,7 +37,10 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.container) Toolbar mToolbar;
+    public interface OnPlayListener {
+        void onSpeak(String str);
+        void onStop();
+    }
 
     public interface OnBackPressedListener {
         boolean onBack();
@@ -75,6 +83,7 @@ public class MainActivity extends BaseActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(1);
 
+        //Permission 설정
         Permission.with(this)
                 .setPermissionListener(permissionListener)
                 .setTitle(R.string.dialog_permission_title)
@@ -90,6 +99,7 @@ public class MainActivity extends BaseActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
 
     }
 
