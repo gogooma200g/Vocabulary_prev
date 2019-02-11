@@ -143,9 +143,9 @@ public class VocaFragment extends Fragment implements View.OnClickListener {
                     btn.setSelected(false);
                 }else{
                     voVoca.setMEMO_YN("Y");
-
                     btn.setSelected(true);
                 }
+                mainVocaFragment.refreshFragment();
                 break;
         }
     }

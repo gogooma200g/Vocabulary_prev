@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -173,6 +174,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         mainActivity.setOnBackPressedListener(this);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_voca, container, false);
@@ -184,6 +186,14 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         swipe_refresh_layout.setColorSchemeResources(R.color.orangish, R.color.yellow,
                 android.R.color.holo_purple, R.color.gradient_bg_start);
         swipe_refresh_layout.setOnRefreshListener(onRefreshListener);
+        swipe_refresh_layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                LogUtil.i("getXPrecision : "  + event.getXPrecision());
+                LogUtil.i("getYPrecision : "  + event.getYPrecision());
+                return false;
+            }
+        });
 
         slidingLayout.setMinFlingVelocity(500);
         //slidingLayout.setAnchorPoint((float) 0.9);
@@ -262,6 +272,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
             float scale = (float) (1 - ((slideOffset * 0.1)));
             //float scale2 = (float) ((slideOffset * 0.2) + 0.8);
             //LogUtil.i("onPanelSlide, offset " + slideOffset + " / " + scale);
+            LogUtil.i("scale : " + scale);
             ll_vocaCard.setScaleX(scale);
             ll_vocaCard.setScaleY(scale);
         }
@@ -283,7 +294,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            LogUtil.i("onPageScrolled");
         }
 
         @Override
@@ -294,7 +305,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
+            LogUtil.i("onPageScrollStateChanged");
         }
     };
 
@@ -392,6 +403,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         }
     };
 
+    /** 데이터 가져오기 */
     private ArrayList<VoVoca> getTestData() {
         String msg = null;
         try {
@@ -534,14 +546,20 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
             case R.id.btn_play :
                 if(isPlaying) {
                     ib_play.setBackgroundResource(R.drawable.ic_main_play);
-                    speaker.stop();
-                    isPlaying = false;
+                    resetSpeakState();
                     break;
                 }
                 ib_play.setBackgroundResource(R.drawable.ic_main_stop);
                 speaker.setAllowed(true);
                 //speaker.speak("We can only extract the phone number of the sender from the message. ");
                 speakVoca();
+
+                if(playState == PlayState.All) {
+                    nextWords = true;
+                    AllSpeakVoca(vocaArrayList.get(currentPos).getWORD(), Locale.US, 0.8f);
+                }
+
+
                 isPlaying = true;
                 break;
 
@@ -554,6 +572,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         String str = "";
 
+        /** All */
         if(playState == PlayState.All) {
             if(canNextWords) {
                 str = vocaArrayList.get(currentPos).getMEAN();
@@ -567,6 +586,20 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         }
     }
 
+    private void resetSpeakState() {
+        speaker.stop();
+        isPlaying = false;
+        nextWords = false;
+    }
+
+    /**
+     * All
+     */
+    boolean nextWords = false;
+    private void AllSpeakVoca(String str, Locale lan, float rate) {
+        speaker.speak(str, lan, rate);
+    }
+
     private void checkTTS(){
         Intent check = new Intent();
         check.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
@@ -578,20 +611,44 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
         @Override
         public void onStart(String s) {
             LogUtil.i("onStart : " + s);
-            isPlaying = true;
+//            isPlaying = true;
         }
 
         @Override
         public void onDone(String s) {
             LogUtil.i("onDone : " + s);
-            if(vocaArrayList.size() < currentPos) return;
-            if(canNextWords) speakVoca();
+            if(playState == PlayState.All) {
+                if(nextWords) {
+                    //Read Korean
+                    handler.sendEmptyMessageDelayed(0, 1000);
+                }else{
+                    //Read next words
+                    currentPos++;
+                    mViewPager.setCurrentItem(currentPos);
+                    //AllSpeakVoca(vocaArrayList.get(currentPos).getMEAN(), Locale.US, 0.8f);
+                }
+            }
+
+//            if(vocaArrayList.size() < currentPos) return;
+//            if(canNextWords) speakVoca();
         }
 
         @Override
         public void onError(String s) {
 
             LogUtil.i("onError : " + s);
+        }
+    };
+
+    @SuppressLint("HandlerLeak")
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if(playState == PlayState.All) {
+                nextWords = false;
+
+                AllSpeakVoca(vocaArrayList.get(currentPos).getMEAN(), Locale.KOREA, 1.0f);
+            }
         }
     };
 
@@ -623,7 +680,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
     }
 
     /**
-     * add Words
+     * add Words 단어추가
      */
     private void addNewWord() {
 

@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity {
 
     public interface OnPlayListener {
         void onSpeak(String str);
+
         void onStop();
     }
 
@@ -124,20 +125,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(onBackPressedListener.onBack()) {
+        if (onBackPressedListener.onBack()) {
             //onBackPressedListener.onBack();
-        }else{
-            if(pressedTime == 0) {
+        } else {
+            if (pressedTime == 0) {
                 ToastUtil.show(this, R.string.cmm_onbackpress);
                 pressedTime = System.currentTimeMillis();
-            }
-            else{
+            } else {
                 int seconds = (int) (System.currentTimeMillis() - pressedTime);
-                if ( seconds > 2000 ) {
+                if (seconds > 2000) {
                     ToastUtil.show(this, R.string.cmm_onbackpress);
-                    pressedTime = 0 ;
-                }
-                else {
+                    pressedTime = 0;
+                } else {
                     super.onBackPressed();
                     android.os.Process.killProcess(android.os.Process.myPid());
                 }
@@ -217,15 +216,15 @@ public class MainActivity extends BaseActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             switch (position) {
-                case 0 :
+                case 0:
                     return MainDictFragment.newInstance(position);
-                case 1 :
+                case 1:
 
                     MainVocaFragment fragment = MainVocaFragment.newInstance(position);
                     fragment.setAdapterData(getTestData());
                     return fragment;
 
-                default :
+                default:
                     return MainSrchFragment.newInstance(position);
             }
         }
@@ -244,7 +243,7 @@ public class MainActivity extends BaseActivity {
             VoVocaListArray voVocaListArray = GlobalApplication.getGson().fromJson(msg, VoVocaListArray.class);
 
             LogUtil.i("size : " + VoVocaListArray.getInstance().getVOCALIST_LIST().size());
-            return  VoVocaListArray.getInstance().getVOCALIST_LIST().get(0).getVOCA_LIST();
+            return VoVocaListArray.getInstance().getVOCALIST_LIST().get(0).getVOCA_LIST();
         } catch (IOException e) {
             e.printStackTrace();
         }
