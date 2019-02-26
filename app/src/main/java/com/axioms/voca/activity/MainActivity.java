@@ -3,6 +3,7 @@ package com.axioms.voca.activity;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.Toolbar;
 
 import com.axioms.voca.R;
 import com.axioms.voca.base.GlobalApplication;
+import com.axioms.voca.databinding.ActivityMainBinding;
 import com.axioms.voca.dialog.CommDialog;
 import com.axioms.voca.fragment.MainDictFragment;
 import com.axioms.voca.fragment.MainSrchFragment;
@@ -37,9 +39,10 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
+    ActivityMainBinding binding;
+
     public interface OnPlayListener {
         void onSpeak(String str);
-
         void onStop();
     }
 
@@ -66,12 +69,16 @@ public class MainActivity extends BaseActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    //private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setActivity(this);
+
+        //setContentView(R.layout.activity_main);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -80,9 +87,9 @@ public class MainActivity extends BaseActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setCurrentItem(1);
+        //mViewPager = (ViewPager) findViewById(R.id.container);
+        binding.container.setAdapter(mSectionsPagerAdapter);
+        binding.container.setCurrentItem(1);
 
         //Permission 설정
         Permission.with(this)
@@ -118,11 +125,15 @@ public class MainActivity extends BaseActivity {
 
     public void setFragment(int pos) {
         LogUtil.i("pos :: " + pos);
-        mViewPager.setCurrentItem(pos);
+        binding.container.setCurrentItem(pos);
     }
 
+    /** BackPressd Time */
     private long pressedTime = 0;
 
+    /**
+     * BackPressed
+     */
     @Override
     public void onBackPressed() {
         if (onBackPressedListener.onBack()) {
@@ -219,7 +230,6 @@ public class MainActivity extends BaseActivity {
                 case 0:
                     return MainDictFragment.newInstance(position);
                 case 1:
-
                     MainVocaFragment fragment = MainVocaFragment.newInstance(position);
                     fragment.setAdapterData(getTestData());
                     return fragment;

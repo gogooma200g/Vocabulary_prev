@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="ko">
     <string name="app_name">Vocabulary</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
@@ -7,6 +7,7 @@
     <string name="action_search">Search</string>
 
     <string name="title_word_manage">단어장 관리</string>
+    <string name="title_word_list">단어장 리스트</string>
 
     <string name="cmm_onbackpress">백버튼을 한번 더 누르면 앱을 종료합니다.</string>
     <string name="cmm_yes">예</string>

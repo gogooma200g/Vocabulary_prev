@@ -1,6 +1,7 @@
 package com.axioms.voca.customview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
@@ -8,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
+import com.axioms.voca.R;
 import com.axioms.voca.util.LogUtil;
 
 public class CustomEditeText extends AppCompatEditText {
@@ -30,11 +32,13 @@ public class CustomEditeText extends AppCompatEditText {
     public CustomEditeText(Context context, AttributeSet attributes) {
         super(context, attributes);
         init();
+        getAttrs(attributes);
     }
 
     public CustomEditeText(Context context, AttributeSet attributes, int defStyleAttr) {
         super(context, attributes, defStyleAttr);
         init();
+        getAttrs(attributes, defStyleAttr);
     }
 
     private void init() {
@@ -50,12 +54,38 @@ public class CustomEditeText extends AppCompatEditText {
         });
     }
 
+    private void getAttrs(AttributeSet attrs) {
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditeText);
+        setTypeArray(typedArray);
+    }
+    private void getAttrs(AttributeSet attrs, int defStyle) {
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditeText, defStyle, 0);
+        setTypeArray(typedArray);
+    }
+
+    private void setTypeArray(TypedArray typedArray) {
+        boolean focusRequest = typedArray.getBoolean(R.styleable.CustomEditeText_setRequestFocus, false);
+        int selection = typedArray.getInteger(R.styleable.CustomEditeText_setSelection, 0);
+
+        LogUtil.i("focusRequest : " + focusRequest);
+        LogUtil.i("selection : " + selection);
+        if(focusRequest) this.requestFocus();
+        this.setSelection(selection);
+    }
+
+
+
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        if(!focused) this.showKeyboard = false;
-        if(focused) onEditTextListener.onFocusMoved();
+        try {
+            if(!focused) this.showKeyboard = false;
+            if(focused) onEditTextListener.onFocusMoved();
+        }catch (Exception e) {
+            LogUtil.e(e.toString());
+        }
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
+
 
     @Override
     public boolean requestFocus(int direction, Rect previouslyFocusedRect) {
@@ -87,6 +117,7 @@ public class CustomEditeText extends AppCompatEditText {
         if (keyCode == KeyEvent.KEYCODE_BACK && onEditTextListener != null) {
             onEditTextListener.onBackPress();
         }
+
         return super.onKeyPreIme(keyCode, event);
     }
 }

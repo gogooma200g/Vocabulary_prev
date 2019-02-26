@@ -36,7 +36,7 @@
             android:theme="@style/Theme.Transparent.Permission"/>
 
         <activity
-            android:name=".activity.VocaManageActivity"
+            android:name=".activity.VocaListManageActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|navigation|touchscreen|uiMode"
             android:screenOrientation="portrait" />
 

@@ -1,5 +1,7 @@
 package com.axioms.voca.activity;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -12,30 +14,47 @@ import com.axioms.voca.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public abstract class ToolbarBaseActivity extends BaseActivity {
+public abstract class ToolbarBaseActivity<B extends ViewDataBinding> extends BaseActivity {
 
     /*----------------------------- abstract method S------------------------------------- */
     /** Contents 영역의 Layout Resource Id  */
-    protected abstract int getContentViewId();
+    protected abstract int getLayoutId();
+
+    /** 기본 UI 대해서 초기설정  */
+    protected abstract void UIInit();
 
     /** 기본 기능 대해서 초기설정  */
     protected abstract void init();
 
     /*----------------------------- abstract method E------------------------------------- */
 
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.toolbar_title) TextView toolbar_title;
+
+//    @BindView(R.id.toolbar) Toolbar mToolbar;
+//    @BindView(R.id.toolbar_title) TextView toolbar_title;
+
+
+    protected B binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentViewId());
-        ButterKnife.bind(this);
-        initUI();
+        binding = DataBindingUtil.setContentView(this, getLayoutId());
+        //ButterKnife.bind(this);
+        UIInit();
         init();
     }
 
-    private void initUI() {
+//    /**
+//     * 기본 UI 세팅
+//     */
+//    protected void UIInit() {}
+
+    /**
+     * set Toolbar
+     */
+    protected void setToolbar() {
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar_title.setText(setTitle());

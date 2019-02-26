@@ -38,7 +38,7 @@ import android.widget.TextView;
 import com.axioms.voca.R;
 import com.axioms.voca.activity.MainActivity;
 import com.axioms.voca.activity.VocaListActivity;
-import com.axioms.voca.activity.VocaManageActivity;
+import com.axioms.voca.activity.VocaListManageActivity;
 import com.axioms.voca.base.GlobalApplication;
 import com.axioms.voca.customview.CustomEditeText;
 import com.axioms.voca.sync.DataSyncThread;
@@ -449,7 +449,7 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
             LogUtil.i("msg :: " + msg);
 
             if(PANELLAYOUT_OPEN_VOCA_CHANGE == msg.what) {
-                startActivity(new Intent(getActivity(), VocaManageActivity.class));
+                startActivity(new Intent(getActivity(), VocaListManageActivity.class));
                 getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
             }else if(PANELLAYOUT_OPEN_VOCA_LIST == msg.what) {
                 startActivity(new Intent(getActivity(), VocaListActivity.class));
@@ -469,12 +469,12 @@ public class MainVocaFragment extends Fragment implements View.OnClickListener, 
 
         switch (view.getId()){
             case R.id.btn_voca_change :
-                /** Go to VocaManageActivity */
+                /** Go to VocaListManageActivity */
                 if(SlidingUpPanelLayout.PanelState.EXPANDED ==  slidingLayout.getPanelState()) {
                     changePanelAndHandler(PANELLAYOUT_OPEN_VOCA_CHANGE);
                 }
                 else{
-                    startActivity(new Intent(getActivity(), VocaManageActivity.class));
+                    startActivity(new Intent(getActivity(), VocaListManageActivity.class));
                     getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_change);
                 }
                 break;
